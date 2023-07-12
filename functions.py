@@ -2,16 +2,29 @@
 def extract_data(element, dataframe):
 
     name = element.find('h2').text
-    country = element.find('span').text
+
+    try:
+      country = element.find('span').text
+    except AttributeError:
+      country = None  # or any default value you want to assign
+
+    try:
+     website = element.find("a").text
+    except AttributeError:
+      website = None
+   
+    try:
+     description = element.find("p").text
+    except AttributeError:
+      description = None  # or any default value you want to assign
 
     year_and_funding = element.find(class_='flex flex-col gap-0')
-    website = element.find("a").text
-    description = element.find("p").text
-
     year_and_funding = year_and_funding.text
 
     # Use regular expressions to extract the founding year
     founding_year_match = re.search(r"Founding Year: (\d+)", year_and_funding)
+
+    
 
     if founding_year_match:
         founding_year = founding_year_match.group(1)
@@ -66,4 +79,4 @@ def extract_all(url, n):
       df=extract_data(element, df)
 
 # return the data
-  return df
+  return df 
