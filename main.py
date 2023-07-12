@@ -6,7 +6,6 @@ import pandas as pd
 url = "https://mad.firstmark.com/card"
 n = 10
 
-
-
-extract_all(url, n)
-
+#create a csv file
+data = extract_all(url, n)
+data.to_csv('data.csv')
