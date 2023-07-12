@@ -49,7 +49,7 @@ def extract_data(element, dataframe):
     return data
 
 
-def extract_all(url, n)
+def extract_all(url, n):
 
   response = requests.get(url)
   # create an empty dataframe
@@ -59,11 +59,11 @@ def extract_all(url, n)
   soup = BeautifulSoup(response.content, "html.parser")
 
 # Find all elements with the specified class
- elements = soup.find(class_="flex flex-col items-start gap-3 rounded-lg border-2 bg-white p-5 dark:bg-slate-900 undefined")
+  elements = soup.find_all(class_="flex flex-col items-start gap-3 rounded-lg border-2 bg-white p-5 dark:bg-slate-900 undefined")
 
 # iterate over 
- for element in elements[:n]:
-     df=extract_data(element, df)
+  for element in elements[:n]:
+      df=extract_data(element, df)
 
 # return the data
- return df
+  return df
