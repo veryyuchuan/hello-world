@@ -6,7 +6,7 @@ def extract_data(element, dataframe):
     try:
       country = element.find('span').text
     except AttributeError:
-      country = None  # or any default value you want to assign
+      country = None 
 
     try:
      website = element.find("a").text
@@ -16,7 +16,7 @@ def extract_data(element, dataframe):
     try:
      description = element.find("p").text
     except AttributeError:
-      description = None  # or any default value you want to assign
+      description = None
 
     year_and_funding = element.find(class_='flex flex-col gap-0')
     year_and_funding = year_and_funding.text
