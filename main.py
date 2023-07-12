@@ -8,5 +8,5 @@ url = "https://mad.firstmark.com/card"
 n = 10
 
 #create a csv file
-data = extract_all(url, n)
+data = functions.extract_all(url, n)
 data.to_csv('data.csv')
