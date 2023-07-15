@@ -1,6 +1,5 @@
 import pandas as pd
 import seaborn as sns
-import matplotlib.pyplot as plt
 
 def funding_distribution(data_file, min_funding, max_funding):
     # Load the dataset into a pandas DataFrame
@@ -39,5 +38,3 @@ def funding_distribution(data_file, min_funding, max_funding):
 
     plt.show()
 
-# Usage example:
-funding_distribution('data.csv', 100, 1000)
