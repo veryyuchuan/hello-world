@@ -1,6 +1,8 @@
 import pandas as pd
 import seaborn as sns
 
+
+# funding distribution
 def funding_distribution(data_file, min_funding, max_funding):
     # Load the dataset into a pandas DataFrame
     data = pd.read_csv(data_file)
@@ -38,3 +40,32 @@ def funding_distribution(data_file, min_funding, max_funding):
 
     plt.show()
 
+
+# Geographic analysis: number of companies grouped by country
+def geographic_analysis(data_file):
+    # Load the dataset into a pandas DataFrame
+    data = pd.read_csv(data_file)
+    data.loc[data['Country'] == 'Total Funding: $0.7M', 'Country'] = 'China'
+
+    # Group the data by country and count the number of companies per country
+    companies_per_country = data['Country'].value_counts().reset_index()
+    companies_per_country.columns = ['Country', 'Count']
+
+    # Sort the data by count in descending order
+    companies_per_country = companies_per_country.sort_values('Count', ascending=False)
+
+    # Plot the histogram
+    plt.figure(figsize=(12, 6))
+    bars = plt.bar(companies_per_country['Country'], companies_per_country['Count'], color='skyblue')
+    plt.xlabel('Country')
+    plt.ylabel('Number of Companies')
+    plt.title('Number of Companies by Country')
+    plt.xticks(rotation=45, ha='right')
+
+    # Add numeric labels to each bar
+    for bar in bars:
+        height = bar.get_height()
+        plt.annotate(f'{height}', xy=(bar.get_x() + bar.get_width() / 2, height),
+                     xytext=(0, 3), textcoords='offset points', ha='center', va='bottom')
+
+    plt.show()
